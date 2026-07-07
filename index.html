@@ -1,0 +1,714 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Тренировочка для Сани и Фёдора</title>
+<meta name="description" content="Трёхнедельная программа тренировок для двух юных футболистов: таймер, техника, видео.">
+<meta name="theme-color" content="#0a1f16">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Тренировочка">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a1f16'/%3E%3Ctext y='72' x='50' font-size='60' text-anchor='middle'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a1f16'/%3E%3Ctext y='72' x='50' font-size='60' text-anchor='middle'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  :root{
+    --pitch:#0a1f16;
+    --pitch-2:#0d2a1d;
+    --line:#2f6b4a;
+    --line-soft:rgba(120,220,160,.18);
+    --chalk:#eef7f0;
+    --grass:#3ddc84;
+    --grass-deep:#22b866;
+    --flare:#f2ff5c;
+    --dim:#8fb7a3;
+    --display:'Anton','Haettenschweiler',Impact,'Arial Narrow Bold',sans-serif;
+    --cond:'Barlow Condensed','Arial Narrow','Roboto Condensed',sans-serif;
+    --body:'Barlow','Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--pitch);
+    color:var(--chalk);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:clamp(24px,6vw,80px);
+    background:
+      radial-gradient(120% 90% at 50% -10%, rgba(242,255,92,.10), transparent 55%),
+      repeating-linear-gradient(90deg, transparent 0 78px, rgba(255,255,255,.015) 78px 156px),
+      linear-gradient(180deg,#0c261a,#081911);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    right:-120px;top:50%;
+    width:520px;height:520px;
+    transform:translateY(-50%);
+    border:2px solid var(--line-soft);
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    top:0;bottom:0;
+    width:2px;
+    background:var(--line-soft);
+    left:clamp(24px,6vw,80px);
+  }
+  .eyebrow{
+    font-family:var(--cond);
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    font-size:clamp(12px,1.6vw,15px);
+    color:var(--grass);
+    margin-bottom:18px;
+    position:relative;
+    z-index:2;
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:400;
+    line-height:.92;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    font-size:clamp(52px,12vw,140px);
+    position:relative;z-index:2;
+  }
+  .hero h1 .names{
+    color:var(--flare);
+    display:block;
+    text-shadow:0 0 40px rgba(242,255,92,.25);
+  }
+  .hero p.sub{
+    margin-top:26px;
+    max-width:520px;
+    font-size:clamp(16px,2.2vw,20px);
+    color:var(--dim);
+    position:relative;z-index:2;
+  }
+  .meta{
+    margin-top:38px;
+    display:flex;flex-wrap:wrap;gap:14px;
+    position:relative;z-index:2;
+  }
+  .chip{
+    font-family:var(--cond);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:15px;
+    padding:9px 16px;
+    border:1.5px solid var(--line);
+    border-radius:100px;
+    color:var(--chalk);
+    display:flex;align-items:center;gap:8px;
+  }
+  .chip b{color:var(--grass);font-weight:700}
+  .scrollcue{
+    margin-top:auto;
+    padding-top:40px;
+    font-family:var(--cond);
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-size:13px;
+    color:var(--dim);
+    position:relative;z-index:2;
+    display:flex;align-items:center;gap:10px;
+  }
+  .scrollcue span{width:34px;height:1.5px;background:var(--grass);animation:pull 1.8s ease-in-out infinite}
+  @keyframes pull{0%,100%{transform:scaleX(.5);opacity:.4}50%{transform:scaleX(1);opacity:1}}
+
+  /* ===== SECTIONS ===== */
+  .wrap{max-width:1000px;margin:0 auto;padding:clamp(24px,5vw,64px)}
+
+  .note{
+    background:var(--pitch-2);
+    border-left:4px solid var(--flare);
+    padding:22px 26px;
+    border-radius:0 12px 12px 0;
+    margin:clamp(48px,8vw,90px) auto 0;
+    max-width:940px;
+  }
+  .note h3{
+    font-family:var(--cond);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-size:19px;
+    color:var(--flare);
+    margin-bottom:8px;
+  }
+  .note p{color:#cfe6d8;font-size:16px;line-height:1.6}
+
+  .sec-head{
+    display:flex;align-items:baseline;gap:18px;
+    margin:clamp(56px,9vw,100px) 0 6px;
+  }
+  .sec-head .kick{
+    font-family:var(--display);
+    font-size:clamp(40px,7vw,72px);
+    color:var(--line);
+    line-height:1;
+  }
+  .sec-head h2{
+    font-family:var(--cond);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:clamp(22px,3.4vw,32px);
+    font-weight:700;
+  }
+  .sec-sub{color:var(--dim);font-size:16px;margin-bottom:26px;max-width:640px}
+
+  /* workout cards */
+  .day{
+    background:linear-gradient(180deg,var(--pitch-2),#0a2216);
+    border:1px solid rgba(61,220,132,.16);
+    border-radius:16px;
+    overflow:hidden;
+    margin-bottom:26px;
+  }
+  .day-top{
+    display:flex;align-items:center;gap:16px;
+    padding:20px 24px;
+    background:rgba(61,220,132,.06);
+    border-bottom:1px solid rgba(61,220,132,.14);
+  }
+  .badge{
+    font-family:var(--display);
+    font-size:26px;
+    width:52px;height:52px;
+    display:grid;place-items:center;
+    background:var(--grass);
+    color:#062012;
+    border-radius:12px;
+    flex-shrink:0;
+  }
+  .day-top h3{
+    font-family:var(--cond);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    font-size:clamp(20px,3vw,26px);
+    font-weight:700;
+  }
+  .day-top .tag{
+    margin-left:auto;
+    font-family:var(--cond);
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:12px;
+    color:var(--grass);
+    border:1px solid var(--line);
+    padding:5px 12px;border-radius:100px;
+  }
+  ul.ex{list-style:none;padding:8px 0}
+  ul.ex li{
+    display:flex;align-items:center;gap:16px;
+    padding:15px 24px;
+    border-bottom:1px solid rgba(255,255,255,.04);
+  }
+  ul.ex li:last-child{border-bottom:none}
+  ul.ex li .name{font-size:17px;font-weight:500;flex:1}
+  ul.ex li .name em{color:var(--dim);font-style:italic;font-weight:400;font-size:14px;display:block;margin-top:4px;line-height:1.45;max-width:640px}
+  ul.ex li .sets{
+    font-family:var(--cond);
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:.02em;
+    color:var(--flare);
+    white-space:nowrap;
+  }
+
+  /* progression / fun grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+  .card{
+    background:var(--pitch-2);
+    border:1px solid rgba(61,220,132,.16);
+    border-radius:14px;
+    padding:24px 22px;
+  }
+  .card .wk{
+    font-family:var(--display);
+    font-size:34px;
+    color:var(--grass);
+    line-height:1;
+    margin-bottom:12px;
+  }
+  .card h4{margin-bottom:8px;font-family:var(--cond);text-transform:uppercase;letter-spacing:.05em;font-size:18px}
+  .card p{color:var(--dim);font-size:15px;line-height:1.55}
+
+  .fun{margin-top:8px}
+  .fun li{
+    display:flex;gap:16px;align-items:flex-start;
+    padding:16px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    list-style:none;
+  }
+  .fun li .n{font-family:var(--display);color:var(--flare);font-size:22px;flex-shrink:0;width:30px}
+  .fun li p{font-size:16px;line-height:1.55}
+  .fun li p b{color:var(--chalk)}
+
+  /* timer */
+  .timer-wrap{
+    display:flex;align-items:center;gap:clamp(24px,5vw,56px);
+    flex-wrap:wrap;
+    background:linear-gradient(180deg,var(--pitch-2),#0a2216);
+    border:1px solid rgba(61,220,132,.16);
+    border-radius:18px;
+    padding:clamp(24px,4vw,38px);
+  }
+  .ring-box{position:relative;width:clamp(190px,42vw,230px);aspect-ratio:1;flex-shrink:0;margin:0 auto}
+  .ring-box svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring-track{fill:none;stroke:rgba(120,220,160,.14);stroke-width:12}
+  .ring-prog{fill:none;stroke:var(--grass);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset .2s linear}
+  .ring-center{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .timer-time{
+    font-family:var(--display);
+    font-size:clamp(46px,11vw,64px);
+    line-height:1;
+    color:var(--chalk);
+    font-variant-numeric:tabular-nums;
+  }
+  .timer-mode{
+    font-family:var(--cond);text-transform:uppercase;letter-spacing:.16em;
+    font-size:12px;color:var(--grass);margin-top:6px;
+  }
+  .timer-side{flex:1;min-width:220px}
+  .presets{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+  .preset{
+    font-family:var(--cond);text-transform:uppercase;letter-spacing:.05em;
+    font-size:15px;color:var(--chalk);
+    background:transparent;
+    border:1.5px solid var(--line);border-radius:100px;
+    padding:9px 16px;cursor:pointer;
+    transition:border-color .15s ease,color .15s ease,background .15s ease;
+  }
+  .preset:hover{border-color:var(--grass)}
+  .preset[aria-pressed="true"]{background:var(--grass);color:#062012;border-color:var(--grass);font-weight:700}
+  .preset:focus-visible{outline:2px solid var(--flare);outline-offset:2px}
+  .timer-ctrl{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    font-family:var(--cond);text-transform:uppercase;letter-spacing:.06em;
+    font-size:17px;font-weight:700;
+    border-radius:12px;padding:14px 26px;cursor:pointer;border:1.5px solid transparent;
+    transition:transform .12s ease,background .15s ease,border-color .15s ease;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:2px solid var(--flare);outline-offset:2px}
+  .btn-primary{background:var(--grass);color:#062012;min-width:150px}
+  .btn-primary:hover{background:var(--grass-deep)}
+  .btn-ghost{background:transparent;color:var(--chalk);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--grass);color:var(--grass)}
+
+  /* save to phone */
+  .save-box{
+    background:var(--pitch-2);
+    border:1px solid rgba(61,220,132,.16);
+    border-radius:16px;
+    padding:clamp(24px,4vw,34px);
+    display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,40px);
+  }
+  .save-box h4{
+    font-family:var(--cond);text-transform:uppercase;letter-spacing:.05em;
+    font-size:18px;color:var(--flare);margin-bottom:12px;
+  }
+  ol.steps{margin:0 0 18px 0;padding-left:20px;color:#cfe6d8}
+  ol.steps li{font-size:15px;line-height:1.6;margin-bottom:6px}
+  ol.steps b{color:var(--chalk)}
+  .save-box p.hint{color:var(--dim);font-size:14px;line-height:1.55}
+  @media(max-width:680px){.save-box{grid-template-columns:1fr}}
+
+  /* technique links */
+  .vidgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
+  a.vid{
+    display:flex;align-items:center;gap:14px;
+    text-decoration:none;color:var(--chalk);
+    background:var(--pitch-2);
+    border:1px solid rgba(61,220,132,.16);
+    border-radius:12px;
+    padding:16px 18px;
+    transition:border-color .18s ease,transform .18s ease,background .18s ease;
+  }
+  a.vid:hover,a.vid:focus-visible{
+    border-color:var(--grass);
+    background:rgba(61,220,132,.08);
+    transform:translateY(-2px);
+    outline:none;
+  }
+  a.vid:focus-visible{outline:2px solid var(--flare);outline-offset:2px}
+  a.vid .play{
+    flex-shrink:0;
+    width:40px;height:40px;border-radius:10px;
+    background:var(--grass);color:#062012;
+    display:grid;place-items:center;
+    font-size:16px;
+  }
+  a.vid .vt{flex:1}
+  a.vid .vt b{display:block;font-size:16px;font-weight:600}
+  a.vid .vt span{font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--dim)}
+  a.vid .arr{color:var(--grass);font-size:18px;flex-shrink:0}
+
+  .channels{
+    display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;
+  }
+  a.chan{
+    text-decoration:none;
+    font-family:var(--cond);
+    text-transform:uppercase;letter-spacing:.06em;font-size:15px;
+    color:var(--chalk);
+    border:1.5px solid var(--line);
+    border-radius:100px;
+    padding:9px 18px;
+    transition:border-color .18s ease,color .18s ease;
+  }
+  a.chan:hover,a.chan:focus-visible{border-color:var(--grass);color:var(--grass);outline:none}
+  a.chan:focus-visible{outline:2px solid var(--flare);outline-offset:2px}
+
+  footer{
+    text-align:center;
+    padding:60px 24px 70px;
+    color:var(--dim);
+    border-top:1px solid rgba(61,220,132,.12);
+    margin-top:60px;
+  }
+  footer .big{
+    font-family:var(--display);
+    font-size:clamp(30px,6vw,54px);
+    color:var(--chalk);
+    text-transform:uppercase;
+    line-height:1;
+    margin-bottom:14px;
+  }
+  footer .big span{color:var(--grass)}
+  footer small{font-size:13px;letter-spacing:.04em}
+
+  @media(max-width:680px){
+    .grid{grid-template-columns:1fr}
+    .vidgrid{grid-template-columns:1fr}
+    .hero::before{width:340px;height:340px;right:-120px}
+    ul.ex li{flex-wrap:wrap;gap:6px 16px}
+    .day-top .tag{margin-left:0;order:3;width:100%}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .scrollcue span{animation:none}
+    a.vid{transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+
+<header class="hero">
+  <div class="eyebrow">3 недели · море · железо</div>
+  <h1>Тренировочка<span class="names">для Сани<br>и Фёдора</span></h1>
+  <p class="sub">Программа для двоих футболистов. Гантели, штанга, скамья — и таблица рекордов на двоих. Всё, что нужно, чтобы вернуться домой сильнее.</p>
+  <div class="meta">
+    <span class="chip"><b>3×</b> в неделю</span>
+    <span class="chip"><b>через</b> день</span>
+    <span class="chip"><b>техника</b> важнее веса</span>
+  </div>
+  <div class="scrollcue"><span></span>Листай вниз</div>
+</header>
+
+<main class="wrap">
+
+  <div class="note">
+    <h3>Читать перед стартом</h3>
+    <p>Вам по 14 или почти — веса лёгкие, движения плавные, никаких рывков и работы «до отказа». Больно (не путать с усталостью) — стоп. Каждый раз: разминка до, растяжка после. Побеждает не тот, кто взял больше, а тот, кто сделал чисто.</p>
+  </div>
+
+  <!-- WARMUP -->
+  <div class="sec-head"><div class="kick">00</div><h2>Разминка · всегда</h2></div>
+  <p class="sec-sub">Одинаковая перед любой тренировкой. 5 минут — и суставы готовы.</p>
+  <div class="day">
+    <ul class="ex">
+      <li><span class="name">Суставная гимнастика<em>шея, плечи, таз, колени — круговые движения</em></span><span class="sets">2 мин</span></li>
+      <li><span class="name">Приседания без веса<em>ноги на ширине плеч, таз назад-вниз, спина прямая, колени смотрят на носки</em></span><span class="sets">15 раз</span></li>
+      <li><span class="name">Прыжки на месте / скакалка<em>мягко на носках, колени чуть согнуты — разгоняем пульс</em></span><span class="sets">30 сек</span></li>
+    </ul>
+  </div>
+
+  <!-- TIMER -->
+  <div class="sec-head"><div class="kick">⏱</div><h2>Таймер</h2></div>
+  <p class="sec-sub">Для планки, фермерской прогулки и отдыха между подходами. Выбери время, жми «Старт» — в конце пикнет и телефон завибрирует.</p>
+  <div class="timer-wrap">
+    <div class="ring-box">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle class="ring-track" cx="100" cy="100" r="90"></circle>
+        <circle class="ring-prog" id="ringProg" cx="100" cy="100" r="90"></circle>
+      </svg>
+      <div class="ring-center">
+        <div class="timer-time" id="timerTime" aria-live="polite">0:40</div>
+        <div class="timer-mode" id="timerMode">готов</div>
+      </div>
+    </div>
+    <div class="timer-side">
+      <div class="presets" role="group" aria-label="Пресеты времени">
+        <button class="preset" type="button" data-sec="30">30 сек</button>
+        <button class="preset" type="button" data-sec="40" aria-pressed="true">40 сек · планка</button>
+        <button class="preset" type="button" data-sec="60">1 мин</button>
+        <button class="preset" type="button" data-sec="90">1:30 · отдых</button>
+      </div>
+      <div class="timer-ctrl">
+        <button class="btn btn-primary" type="button" id="btnStart">Старт</button>
+        <button class="btn btn-ghost" type="button" id="btnReset">Сброс</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY A -->
+  <div class="sec-head"><div class="kick">A</div><h2>Ноги + кор</h2></div>
+  <p class="sec-sub">База футболиста. Мощные ноги и крепкий центр — на этом держится всё.</p>
+  <div class="day">
+    <div class="day-top"><div class="badge">A</div><h3>Ноги + кор</h3><span class="tag">День 1</span></div>
+    <ul class="ex">
+      <li><span class="name">Приседания со штангой<em>гриф на верх спины (не на шею), таз назад, опускаемся до параллели бедра с полом, пятки в пол</em></span><span class="sets">3 × 10</span></li>
+      <li><span class="name">Выпады с гантелями на месте<em>шаг вперёд, оба колена сгибаются до 90°, заднее почти до пола, корпус прямой. На каждую ногу</em></span><span class="sets">3 × 8</span></li>
+      <li><span class="name">Румынская тяга со штангой<em>ноги чуть согнуты, таз тянем назад, гриф скользит вдоль ног, спина ровная. Чувствуем заднюю поверхность бедра. Лёгкий вес</em></span><span class="sets">3 × 10</span></li>
+      <li><span class="name">Планка<em>упор на локти и носки, тело — одна прямая линия, живот втянут, таз не проваливается и не задирается</em></span><span class="sets">3 × 40 сек</span></li>
+      <li><span class="name">Скручивания на пресс<em>лёжа на спине, поясница прижата к полу, поднимаем лопатки за счёт живота, а не рук за головой</em></span><span class="sets">3 × 15</span></li>
+    </ul>
+  </div>
+
+  <!-- DAY B -->
+  <div class="sec-head"><div class="kick">B</div><h2>Верх тела</h2></div>
+  <p class="sec-sub">Грудь, спина, плечи, руки. Чтобы держать корпус в борьбе за мяч.</p>
+  <div class="day">
+    <div class="day-top"><div class="badge">B</div><h3>Верх тела</h3><span class="tag">День 2</span></div>
+    <ul class="ex">
+      <li><span class="name">Жим штанги лёжа на скамье<em>лопатки сведены, гриф опускаем к середине груди, локти под 45°, вверх выжимаем плавно. Первое время — со страхующим</em></span><span class="sets">3 × 8</span></li>
+      <li><span class="name">Тяга гантели в наклоне<em>одно колено и рука на скамье, спина параллельно полу и прямая, тянем гантель к поясу локтем назад. На каждую руку</em></span><span class="sets">3 × 10</span></li>
+      <li><span class="name">Жим гантелей сидя над головой<em>сидя, спина прямая, гантели от плеч выжимаем вверх, не выгибая поясницу</em></span><span class="sets">3 × 10</span></li>
+      <li><span class="name">Подъём на бицепс<em>локти прижаты к бокам и не двигаются, поднимаем только предплечьями, вниз опускаем медленно</em></span><span class="sets">3 × 12</span></li>
+      <li><span class="name">Боковая планка<em>упор на один локоть, тело прямое от головы до пят, таз не проваливается. На каждую сторону</em></span><span class="sets">3 × 30 сек</span></li>
+    </ul>
+  </div>
+
+  <!-- DAY C -->
+  <div class="sec-head"><div class="kick">C</div><h2>Всё тело + сила</h2></div>
+  <p class="sec-sub">Собираем всё вместе. Самый заряженный день недели.</p>
+  <div class="day">
+    <div class="day-top"><div class="badge">C</div><h3>Всё тело + сила</h3><span class="tag">День 3</span></div>
+    <ul class="ex">
+      <li><span class="name">Становая тяга со штангой<em>штанга у голеней, таз назад, спина прямая как доска, встаём за счёт ног и таза, гриф скользит вдоль ног. Лёгкий вес, техника прежде всего</em></span><span class="sets">3 × 8</span></li>
+      <li><span class="name">Жим гантелей лёжа на скамье<em>лёжа, гантели у груди, локти под 45°, выжимаем вверх и плавно опускаем. Больше свободы, чем со штангой</em></span><span class="sets">3 × 10</span></li>
+      <li><span class="name">Приседания со штангой<em>та же техника, что в дне A: гриф на верх спины, таз назад, до параллели, пятки в пол</em></span><span class="sets">3 × 8</span></li>
+      <li><span class="name">Фермерская прогулка<em>по гантеле в каждой руке, плечи расправлены, спина прямая, идём ровным шагом туда-обратно. Держим корпус жёстким</em></span><span class="sets">3 захода</span></li>
+      <li><span class="name">Пресс на выбор<em>скручивания, планка или подъём ног — что больше нравится. Медленно и без рывков</em></span><span class="sets">3 × 15</span></li>
+    </ul>
+  </div>
+
+  <!-- TECHNIQUE VIDEOS -->
+  <div class="sec-head"><div class="kick">▶</div><h2>Техника на видео</h2></div>
+  <p class="sec-sub">Перед первым подходом посмотрите разбор упражнения — глазами запомнить движение проще, чем словами. Ссылки открывают подборку роликов на русском по каждому упражнению.</p>
+  <div class="vidgrid">
+    <a class="vid" href="https://www.youtube.com/results?search_query=приседания+со+штангой+техника+для+новичков" target="_blank" rel="noopener">
+      <span class="play">▶</span><span class="vt"><b>Приседания со штангой</b><span>дни A и C</span></span><span class="arr">→</span>
+    </a>
+    <a class="vid" href="https://www.youtube.com/results?search_query=становая+тяга+техника+для+начинающих" target="_blank" rel="noopener">
+      <span class="play">▶</span><span class="vt"><b>Становая тяга</b><span>день C</span></span><span class="arr">→</span>
+    </a>
+    <a class="vid" href="https://www.youtube.com/results?search_query=румынская+тяга+со+штангой+техника" target="_blank" rel="noopener">
+      <span class="play">▶</span><span class="vt"><b>Румынская тяга</b><span>день A</span></span><span class="arr">→</span>
+    </a>
+    <a class="vid" href="https://www.youtube.com/results?search_query=жим+штанги+лёжа+техника+для+новичков" target="_blank" rel="noopener">
+      <span class="play">▶</span><span class="vt"><b>Жим штанги лёжа</b><span>день B</span></span><span class="arr">→</span>
+    </a>
+    <a class="vid" href="https://www.youtube.com/results?search_query=выпады+с+гантелями+техника" target="_blank" rel="noopener">
+      <span class="play">▶</span><span class="vt"><b>Выпады с гантелями</b><span>день A</span></span><span class="arr">→</span>
+    </a>
+    <a class="vid" href="https://www.youtube.com/results?search_query=тяга+гантели+в+наклоне+одной+рукой+техника" target="_blank" rel="noopener">
+      <span class="play">▶</span><span class="vt"><b>Тяга гантели в наклоне</b><span>день B</span></span><span class="arr">→</span>
+    </a>
+    <a class="vid" href="https://www.youtube.com/results?search_query=жим+гантелей+сидя+над+головой+техника" target="_blank" rel="noopener">
+      <span class="play">▶</span><span class="vt"><b>Жим гантелей сидя</b><span>день B</span></span><span class="arr">→</span>
+    </a>
+    <a class="vid" href="https://www.youtube.com/results?search_query=планка+как+правильно+делать+техника" target="_blank" rel="noopener">
+      <span class="play">▶</span><span class="vt"><b>Планка</b><span>дни A и B</span></span><span class="arr">→</span>
+    </a>
+  </div>
+
+  <p class="sec-sub" style="margin-top:30px">Проверенные русскоязычные каналы, где технику объясняют спокойно и по делу:</p>
+  <div class="channels">
+    <a class="chan" href="https://www.youtube.com/results?search_query=Игорь+Войтенко+техника+упражнений" target="_blank" rel="noopener">Игорь Войтенко</a>
+    <a class="chan" href="https://www.youtube.com/results?search_query=Денис+Борисов+техника+упражнений" target="_blank" rel="noopener">Денис Борисов</a>
+    <a class="chan" href="https://www.youtube.com/results?search_query=Ярослав+Брин+базовые+упражнения+техника" target="_blank" rel="noopener">Ярослав Брин</a>
+    <a class="chan" href="https://www.youtube.com/results?search_query=техника+упражнений+в+тренажёрном+зале+для+подростков" target="_blank" rel="noopener">Подборка для подростков</a>
+  </div>
+
+  <!-- FUN -->
+  <div class="sec-head"><div class="kick">VS</div><h2>Чтобы было интересно</h2></div>
+  <p class="sec-sub">Вас двое — это главное топливо. Соревнуйтесь.</p>
+  <ul class="fun">
+    <li><span class="n">01</span><p><b>Таблица рекордов на двоих.</b> Записывайте: дольше в планке, больше отжиманий, больше повторений. Кто сегодня король?</p></li>
+    <li><span class="n">02</span><p><b>Челлендж-день раз в неделю.</b> Одно упражнение, один победитель. Проигравший — разминку в следующий раз ведёт.</p></li>
+    <li><span class="n">03</span><p><b>Тренируйтесь вместе, а не по очереди.</b> Один делает — другой считает и страхует. Так честнее и веселее.</p></li>
+  </ul>
+
+  <!-- PROGRESSION -->
+  <div class="sec-head"><div class="kick">→</div><h2>Прогресс по неделям</h2></div>
+  <p class="sec-sub">Три недели — три ступени. Вес растёт медленно, техника — всегда первая.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="wk">01</div>
+      <h4>Учим технику</h4>
+      <p>Минимальные веса. Задача недели — запомнить движения телом, а не поднять больше.</p>
+    </div>
+    <div class="card">
+      <div class="wk">02</div>
+      <h4>Добавляем чуть-чуть</h4>
+      <p>Маленький блин к штанге или пара повторений. Только если техника чистая.</p>
+    </div>
+    <div class="card">
+      <div class="wk">03</div>
+      <h4>Ещё немного</h4>
+      <p>Прибавляем осторожно. Уезжаете с моря заметно сильнее, чем приехали.</p>
+    </div>
+  </div>
+
+  <!-- SAVE TO PHONE -->
+  <div class="sec-head"><div class="kick">📲</div><h2>Сохранить на телефон</h2></div>
+  <p class="sec-sub">Чтобы программа всегда была под рукой в зале — даже без интернета.</p>
+  <div class="save-box">
+    <div>
+      <h4>Ярлык на экран Домой · iPhone</h4>
+      <ol class="steps">
+        <li>Открой эту страницу в <b>Safari</b>.</li>
+        <li>Внизу нажми кнопку <b>«Поделиться»</b> (квадрат со стрелкой вверх).</li>
+        <li>Выбери <b>«На экран Домой»</b>.</li>
+        <li>Нажми <b>«Добавить»</b> — появится иконка как у приложения.</li>
+      </ol>
+      <p class="hint">На Android — то же самое в Chrome: меню «⋮» → «Добавить на главный экран».</p>
+    </div>
+    <div>
+      <h4>Скачать файлом · офлайн</h4>
+      <p class="hint" style="margin-bottom:16px">Сохрани страницу целиком одним файлом. Откроется в браузере даже без сети — таймер и всё остальное работает.</p>
+      <button class="btn btn-primary" type="button" id="btnSave">Скачать страницу</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="big">Саня <span>×</span> Фёдор</div>
+  <small>3 недели · 9 тренировок · 1 таблица рекордов</small>
+</footer>
+
+<script>
+(function(){
+  var R = 90, C = 2 * Math.PI * R;
+  var ring = document.getElementById('ringProg');
+  var timeEl = document.getElementById('timerTime');
+  var modeEl = document.getElementById('timerMode');
+  var startBtn = document.getElementById('btnStart');
+  var resetBtn = document.getElementById('btnReset');
+  var presets = Array.prototype.slice.call(document.querySelectorAll('.preset'));
+  ring.style.strokeDasharray = C;
+
+  var total = 40, remain = 40, running = false, endAt = 0, audioCtx = null;
+
+  function fmt(s){
+    s = Math.max(0, Math.ceil(s));
+    var m = Math.floor(s / 60), ss = s % 60;
+    return m + ':' + (ss < 10 ? '0' + ss : ss);
+  }
+  function render(){
+    timeEl.textContent = fmt(remain);
+    var frac = total > 0 ? Math.max(0, remain / total) : 0;
+    ring.style.strokeDashoffset = C * (1 - frac);
+  }
+  function tick(){
+    if(!running) return;
+    remain = (endAt - Date.now()) / 1000;
+    if(remain <= 0){ remain = 0; render(); finish(); return; }
+    render();
+    requestAnimationFrame(tick);
+  }
+  function ensureAudio(){
+    if(!audioCtx){
+      try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
+    }
+    if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+  }
+  function beep(){
+    if(!audioCtx) return;
+    var t0 = audioCtx.currentTime;
+    [0, 0.25, 0.5].forEach(function(off){
+      var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = 'sine'; o.frequency.value = 880;
+      o.connect(g); g.connect(audioCtx.destination);
+      g.gain.setValueAtTime(0.0001, t0 + off);
+      g.gain.exponentialRampToValueAtTime(0.35, t0 + off + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + off + 0.18);
+      o.start(t0 + off); o.stop(t0 + off + 0.2);
+    });
+  }
+  function start(){
+    if(running){ running = false; startBtn.textContent = 'Старт'; modeEl.textContent = 'пауза'; return; }
+    if(remain <= 0) remain = total;
+    running = true;
+    endAt = Date.now() + remain * 1000;
+    startBtn.textContent = 'Пауза';
+    modeEl.textContent = 'идёт';
+    ensureAudio();
+    requestAnimationFrame(tick);
+  }
+  function reset(){
+    running = false; remain = total;
+    startBtn.textContent = 'Старт'; modeEl.textContent = 'готов';
+    render();
+  }
+  function finish(){
+    running = false;
+    startBtn.textContent = 'Старт'; modeEl.textContent = 'готово!';
+    render();
+    beep();
+    if(navigator.vibrate) navigator.vibrate([220, 120, 220]);
+  }
+  function setTotal(v, btn){
+    total = v; remain = v; running = false;
+    startBtn.textContent = 'Старт'; modeEl.textContent = 'готов';
+    presets.forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+    render();
+  }
+
+  startBtn.addEventListener('click', start);
+  resetBtn.addEventListener('click', reset);
+  presets.forEach(function(b){
+    b.addEventListener('click', function(){ setTotal(parseInt(b.dataset.sec, 10), b); });
+  });
+
+  var saveBtn = document.getElementById('btnSave');
+  if(saveBtn){
+    saveBtn.addEventListener('click', function(){
+      var html = '<!doctype html>\n' + document.documentElement.outerHTML;
+      var blob = new Blob([html], { type: 'text/html' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'trenirovka-sani-i-fedora.html';
+      document.body.appendChild(a); a.click();
+      setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1500);
+    });
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>
+
